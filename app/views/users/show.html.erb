@@ -1,0 +1,26 @@
+<%= link_to "All Links", links_url %>
+<%= link_to "All Subs", subs_url %>
+<%= link_to "Add a Sub", new_sub_url %>
+<%= link_to "Add a Link", new_link_url %>
+
+<h1><%= @user.email %>'s Stuff</h1>
+
+<h2>Subs</h2>
+<table border="0" cellspacing="5" cellpadding="5">
+  <% @user.subs.each do |sub| %>
+    <tr>
+      <td><%= link_to sub.name, sub_url(sub) %></td>
+      <td><%= link_to "Edit", edit_sub_url(sub) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<h2>Links</h2>
+<table border="0" cellspacing="5" cellpadding="5">
+  <% @user.links.each do |link| %>
+    <tr>
+      <td><%= link_to link.title, link_url(link) %></td>
+      <td><%= link_to "Edit", edit_link_url(link) %></td>
+    </tr>
+  <% end %>
+</table>

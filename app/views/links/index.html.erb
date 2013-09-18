@@ -1,0 +1,13 @@
+<%= link_to "All Subs", subs_url %>
+<%= link_to "Add a Sub", new_sub_url %>
+<%= link_to "My Stuff", user_url(self.current_user) %>
+<%= link_to "Submit a new link", new_link_url %>
+
+<h1>Links</h1>
+<% @links.each do |link|  %>
+  <ul>
+    <li>
+      <%= link_to link.title, link.url %>
+    </li>
+  </ul>
+<% end %>

@@ -1,0 +1,14 @@
+<%= link_to "All Links", links_url %>
+<%= link_to "All Subs", subs_url%>
+<%= link_to "Add a Sub", new_sub_url %>
+<%= link_to("Edit Sub", edit_sub_url(@sub)) if is_moderator? %>
+
+<h1><%= @sub.name %></h1>
+
+<ul>
+  <% @sub.links.each do |link| %>
+    <li>
+      <%= link_to link.title, "#{link.url}" %>
+    </li>
+  <% end %>
+</ul>

@@ -1,0 +1,46 @@
+<%= link_to "All Subs", subs_url %>
+<%= link_to "All Links", links_url %>
+
+<h1>Add a Sub</h1>
+
+<form action="<%= subs_url %>" method="post" accept-charset="utf-8">
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+  <input
+    type="hidden"
+    name="sub[moderator_id]"
+    value="<%= self.current_user.id %>">
+  <label>
+    Name
+    <input type="text" name="sub[name]" value="<%= @sub.name %>">
+  </label>
+  <br>
+  <br>
+  <label>
+    <strong>Links:</strong>
+    <table border="0" cellspacing="5" cellpadding="5">
+      <tr><td></td><td>Title</td><td>URL</td></tr>
+      <% 5.times do |i| %>
+        <tr>
+          <td><%= i + 1 %>. </td>
+          <td>
+            <input
+              type="text"
+              name="links[<%= i %>][title]"
+              value="<%= @links[i].title %>">
+          </td>
+          <td>
+            <input
+              type="text"
+              name="links[<%= i %>][url]"
+              value="<%= @links[i].url %>">
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </label>
+  <p><input type="submit" value="Add Sub"></p>
+</form>

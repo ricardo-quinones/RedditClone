@@ -1,0 +1,65 @@
+<% title = (@link.persisted? ? "Edit Link" : "Add Link") %>
+<% method = (@link.persisted? ? :put : :post) %>
+<% action = (@link.persisted? ? link_url(@link) : links_url) %>
+<% button_text = (@link.persisted? ? "Update Link" : "Add Link") %>
+
+<h1><%= title %></h1>
+
+<form action="<%= action %>" method="post" accept-charset="utf-8">
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+    <input type="hidden" name="_method" value="<%= method %>">
+
+  <input type="hidden" name="link[user_id]" value="<%= self.current_user.id %>">
+  <p>
+    <label>
+      Title
+      <input type="text" name="link[title]" value="<%= @link.title %>">
+    </label>
+  </p>
+  <p>
+    <label>
+      URL
+      <input type="text" name="link[url]" value="<%= @link.url %>">
+    </label>
+  </p>
+  <p>
+    <label>
+      Additional Info
+      <br>
+      <textarea
+        name="link[body]"
+        rows="8" cols="40"
+        placeholder="Add more info here">
+          <%= @link.body %>
+      </textarea>
+    </label>
+  </p>
+
+  <p>
+    <label>
+      Subs
+      <br>
+      <% Sub.all.each do |sub| %>
+        <label>
+          <input
+            type="checkbox"
+            name="subs[sub_ids][]"
+            value="<%= sub.id %>"
+            <%= "checked" if  @subs.include?(sub)%>>
+          <%= sub.name %>
+        </label>
+        <br>
+      <% end %>
+      <label>
+        <input type="hidden" name="subs[sub_ids][]" value="">
+      </label>
+    </label>
+  </p>
+
+
+  <p><input type="submit" value="<%= button_text %>"></p>
+</form>

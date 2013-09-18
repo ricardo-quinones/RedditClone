@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RedditClone</title>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= render 'layouts/flash', flash: flash %>
+
+<%= yield %>
+
+<% if signed_in? %>
+  <%= button_to "Sign Out", session_url, method: :delete %>
+<% end %>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<%= link_to "Back to Sub", sub_url(@sub) %>
+<%= link_to "All Subs", subs_url %>
+<%= link_to "All links", links_url %>
+
+<h1>Edit Sub</h1>
+
+<form action="<%= sub_url(@sub) %>" method="post" accept-charset="utf-8">
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+  <input type="hidden" name="_method" value="put">
+
+  <label>
+    Name
+    <input type="text" name="sub[name]" value="<%= @sub.name %>">
+  </label>
+
+  <p><input type="submit" value="Change Name"></p>
+</form>
+<table border="0" cellspacing="5" cellpadding="5">
+  <tr><th>Links</th></tr>
+  <% @sub.links.each do |link| %>
+    <tr>
+      <td><%= link_to link.title, link.url %></td>
+      <td>
+        <form action="<%= link_url(link) %>" method="post">
+          <input
+            type="hidden"
+            name="authenticity_token"
+            value="<%= form_authenticity_token %>">
+
+          <input type="hidden" name="_method" value="delete">
+          <input type="hidden" name="sub_id" value="<%= @sub.id %>">
+
+          <p><input type="submit" value="Delete"></p>
+        </form>
+      </td>
+    </tr>
+  <% end %>
+</table>
