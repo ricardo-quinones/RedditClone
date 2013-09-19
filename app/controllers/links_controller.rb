@@ -1,6 +1,8 @@
 class LinksController < ApplicationController
+  include LinksHelper
 
   before_filter :must_sign_in, except: [:index, :show]
+  before_filter :not_link_owner, only: [:edit, :update]
 
   def index
     @links = Link.all

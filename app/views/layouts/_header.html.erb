@@ -1,0 +1,6 @@
+<%= link_to "All Links", links_url %>
+<%= link_to "All Subs", subs_url %>
+<%= link_to "Add a Sub", new_sub_url %>
+<%= link_to "Submit a new link", new_link_url %>
+<%= link_to("My Stuff", user_url(self.current_user))  if signed_in? %>
+<%= link_to("Sign In", new_session_url) unless signed_in? %>

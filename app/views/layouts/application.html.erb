@@ -4,15 +4,15 @@
   <title>RedditClone</title>
   <%= csrf_meta_tags %>
 </head>
-<body>
+  <body>
 
-<%= render 'layouts/flash', flash: flash %>
+    <%= render 'layouts/header' %>
+    <br>
+    <%= render 'layouts/flash', flash: flash %>
 
-<%= yield %>
+    <%= yield %>
 
-<% if signed_in? %>
-  <%= button_to "Sign Out", session_url, method: :delete %>
-<% end %>
+    <%= button_to("Sign Out", session_url, method: :delete) if signed_in? %>
 
-</body>
+  </body>
 </html>

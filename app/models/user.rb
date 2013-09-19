@@ -1,3 +1,5 @@
+require 'bcrypt'
+
 class User < ActiveRecord::Base
   attr_accessible :email, :password
   attr_reader :password
@@ -15,6 +17,8 @@ class User < ActiveRecord::Base
     foreign_key: :moderator_id,
     primary_key: :id
   )
+
+  has_many :comments
 
   def self.find_by_credentials(email, password)
     user = User.find_by_email(email)
